@@ -1,0 +1,28 @@
+.send-message-area{
+    /* min-height: 70vh;
+    overflow: auto; */
+    margin-top: 10%;
+    margin-bottom: 2%;
+}
+
+.scroller{
+    overflow-y: auto;
+    height: 70vh;
+}
+
+.message-box{
+    padding-bottom: 5px;
+}
+
+.message-box div{
+    text-align: right;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.message-box div span{
+    padding: 10px;
+    border: 1px solid #1890ff;
+    border-radius: 25px;
+    color: white;
+    background: #1890ff;
+}
