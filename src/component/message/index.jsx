@@ -35,7 +35,7 @@ function Message(props) {
             }
         };
         getUserPost(data, header).then(res => {
-            let value=messages.length? messages.concat(res.product):res.product;
+            let value = messages.length ? messages.concat(res.product) : res.product;
             setMessagesList(value);
             setLoader(false);
             form.initialValues();
@@ -64,7 +64,12 @@ function Message(props) {
         };
         sendUserPost(data, header).then(res => {
             setTextMessage('');
-            getMessageListApi();
+            if (res.comment) {
+                let value = messages.length ? messages.concat(res.comment) : messages.push(res.comment);
+                setMessagesList(value);
+                setLoader(false);
+            }
+            // getMessageListApi();
         }).catch(err => {
             // message.error(err?err.data.errors.userId:'');
             setLoader(false);
@@ -95,7 +100,7 @@ function Message(props) {
         <React.Fragment>
             <Row>
                 <Col span={6}>
-                    <Button type="primary" onClick={fetchRandomMessageList}  className="message-btn">Get Message</Button>
+                    <Button type="primary" onClick={fetchRandomMessageList} className="message-btn">Get Message</Button>
                 </Col>
                 <Col span={12}>
                     <div className="send-message-area">
@@ -103,12 +108,19 @@ function Message(props) {
                         <div className="scroller">
                             <div className="message-box">
                                 {messages.length ? messages.map((value, index) => {
+                                    let status = value.body.length > 50 ? true : false
                                     return (
                                         <React.Fragment key={`${value.author}-${index}`}>
                                             <div>
-                                                <div>
-                                                    <span>{value.body}</span>
-                                                </div>
+                                                {
+                                                    status ? <div className="long-text">
+                                                        {value.body}
+                                                    </div> : <div>
+                                                        <span>{value.body}</span>
+                                                    </div>
+                                                }
+
+
                                             </div>
                                         </React.Fragment>
                                     )

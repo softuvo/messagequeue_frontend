@@ -38,3 +38,13 @@
     background-color: #7cb305 !important;
     border-color: #7cb305 !important;;
 }
+
+.long-text{
+    padding: 10px;
+    border: 1px solid #1890ff;
+    border-radius: 25px;
+    color: white;
+    background: #1890ff;
+    word-break: break-all;
+
+}
