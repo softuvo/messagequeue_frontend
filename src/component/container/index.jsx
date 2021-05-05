@@ -8,7 +8,8 @@ import { routes } from '../route';
 function Container(props) {
     const loginUserInfo=useSelector(state=>state.user.loginUserInfo);
     const loginUserToken=useSelector(state=>state.user.loginUserToken);
-    if(loginUserToken){
+    const token=localStorage.getItem('token');
+    if(token){
         
     }else{
         props.history.push('/login');

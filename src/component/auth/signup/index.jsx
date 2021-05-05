@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Input, Button, Checkbox, Row, Col, message } from 'antd';
+import { Form, Input, Button, Checkbox, Row, Col, message,Typography } from 'antd';
 
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 // API
 import { signupAPI } from '../../../api/Auth';
 import { header } from '../../../api/apiActions/apiAction';
+
+const { Title } = Typography;
+
 
 function SignUp(props) {
     const [loader, setLoader] = useState(false)
@@ -26,7 +29,7 @@ function SignUp(props) {
             message.success(res.message);
             props.history.push('/');
         }).catch(err => {
-            message.error(err ? err.data.message : '');
+            message.error(err?`email ${err.data.errors.email}`:'');
             setLoader(false);
         })
     }
@@ -43,6 +46,7 @@ function SignUp(props) {
                         }}
                         onFinish={onFinish}
                     >
+                                    <Title level={2}>Signup Form</Title>
                         {/* <Form.Item
                             name="first_name"
                             rules={[

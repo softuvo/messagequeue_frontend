@@ -4,7 +4,8 @@ export const API_END_POINTS={
     LOGIN:'/api/users/login',
     SIGNUP:'/api/users',
     GET_USERS_POST:'/api/users/post',
-    SEND_USER_MESSAGE:'/api/users/message '
+    SEND_USER_MESSAGE:'/api/users/message',
+    FETCH_RANDOM_MESSAGE:'/api/users/fetchMessage'
 }
 
 export const header={};

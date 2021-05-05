@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Input, Button, Checkbox, Row, Col, message,Layout } from 'antd';
+import { Form, Input, Button, Checkbox, Row, Col, message,Typography } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 // API
@@ -10,6 +10,7 @@ import { header } from '../../../api/apiActions/apiAction';
 import { setLoginUserInfo, setLoginUserToken } from '../../../redux/slices/authSlice'
 // CSS
 import './login.css';
+const { Title } = Typography;
 
 function Login(props) {
     const dispatch = useDispatch();
@@ -31,14 +32,17 @@ function Login(props) {
         };
         login(data, header).then(res => {
             setLoader(false);
+            localStorage.setItem('token',res.user.token);
+            localStorage.setItem('userId',res.user._id);
             dispatch(setLoginUserToken(res.user.token));
             dispatch(setLoginUserInfo(res.user));
+            localStorage.setItem('token',res.user.token);
+
             message.success(res.message);
             props.history.push('/');
         }).catch(err => {
-            message.error(err ? err.data.message : '');
+            message.error(err?`emailorpassword ${err.data.errors.emailorpassword}`:'');
             setLoader(false);
-
         })
     }
     return (
@@ -53,6 +57,7 @@ function Login(props) {
                         }}
                         onFinish={onFinish}
                     >
+                                    <Title level={2}>Login Form</Title>
                         <Form.Item
                             name="email"
                             rules={[
