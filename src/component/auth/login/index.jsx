@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Input, Button, Checkbox, Row, Col, message } from 'antd';
+import { Form, Input, Button, Checkbox, Row, Col, message,Layout } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 // API
@@ -43,8 +43,8 @@ function Login(props) {
     }
     return (
         <React.Fragment>
-            <Row>
-                <Col span={12} offset={6}>
+            <Row className="mt-5">
+                <Col span={6} offset={10} id="components-form-demo-normal-login">
                     <Form
                         name="normal_login"
                         className="login-form"
@@ -80,18 +80,16 @@ function Login(props) {
                             />
                         </Form.Item>
                         <Form.Item>
-                            <Form.Item name="remember" valuePropName="checked" noStyle>
-                                <Checkbox>Remember me</Checkbox>
-                            </Form.Item>
-                            <Link to="" className="login-form-forgot">Forgot password</Link>
-                        </Form.Item>
-
-                        <Form.Item>
+                            {/* <Form.Item name="remember" valuePropName="checked" noStyle><Checkbox>Remember me</Checkbox></Form.Item>
+                            <Link to="" className="login-form-forgot">Forgot password</Link> */}
                             <Button type="primary" htmlType="submit" className="login-form-button" loading={loader}>Log in</Button>Or <Link to="/signup">register now!</Link>
                         </Form.Item>
+                        {/* <Form.Item>
+                        </Form.Item> */}
                     </Form>
                 </Col>
             </Row>
+
         </React.Fragment >
     )
 }

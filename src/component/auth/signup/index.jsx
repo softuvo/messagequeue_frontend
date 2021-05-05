@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Input, Button, Checkbox, Row, Col, message } from 'antd';
+
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 // API
 import { signupAPI } from '../../../api/Auth';
@@ -32,8 +33,8 @@ function SignUp(props) {
 
     return (
         <React.Fragment>
-            <Row>
-                <Col span={12} offset={6}>
+            <Row className="mt-5">
+                <Col span={6} offset={10} id="components-form-demo-normal-login">
                     <Form
                         name="normal_login"
                         className="login-form"
@@ -73,7 +74,9 @@ function SignUp(props) {
                                 },
                             ]}
                         >
-                            <Input type="email" placeholder="email" />
+                            <Input
+                             prefix={<UserOutlined className="site-form-item-icon" />}
+                            type="email" placeholder="email" />
                         </Form.Item>
                         <Form.Item
                             name="password"
@@ -85,6 +88,7 @@ function SignUp(props) {
                             ]}
                         >
                             <Input
+                                prefix={<LockOutlined className="site-form-item-icon" />}
                                 type="password"
                                 placeholder="Password"
                             />
